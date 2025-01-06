@@ -162,6 +162,7 @@ public final class LocksForgeEvents {
         if (locked.isPresent()) {
             Lockable lkb = locked.get();
             e.setUseBlock(Event.Result.DENY);
+	    e.setCanceled(true);
             Item item = stack.getItem();
             // FIXME erase this ugly ass hard coded shit from the face of the earth and make a proper way to do this (maybe mixin to where the right click event is fired from)
             if (!stack.is(LocksItemTags.LOCK_PICKS) && item != LocksItems.MASTER_KEY.get() && (!stack.is(LocksItemTags.KEYS) || LockingItem.getOrSetId(stack) != lkb.lock.id) && (item != LocksItems.KEY_RING.get() || !KeyRingItem.containsId(stack, lkb.lock.id))) {
